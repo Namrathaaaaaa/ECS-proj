@@ -1,17 +1,20 @@
+# Stage 1
+
 FROM node:18 as builder
 
-WORKDIR /build 
+WORKDIR /build
 
 COPY package*.json .
-RUN npm install 
+RUN npm install
 
-COPY /src /src
+COPY src/ src/
 COPY tsconfig.json tsconfig.json
 
-CMD ["npm" "run build"]
+RUN npm run build
 
 
 
+# Stage 2
 
 FROM node:18 as runner
 
